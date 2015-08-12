@@ -28,7 +28,9 @@ namespace Ezector_windowsservice
 
             CompletedOrPassed compass = new CompletedOrPassed();
 
-            //if (DateTime.UtcNow.Date.Hour == 12)
+            ///Have to set Scandinavian time for Ezector
+            ///Have to run midnight
+            //if ((DateTime.UtcNow.Hour == 23) && (DateTime.UtcNow.Minute == 59) && (DateTime.UtcNow.Second == 59))
             //{
                 compass.ProcessCompletedOrPassed();
             //}
