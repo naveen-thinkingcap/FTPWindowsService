@@ -26,7 +26,7 @@ namespace Ezector_windowsservice
             con.Open();
             //************************
             // Fetcching completed/passed course for StudentRecord
-            string strSQL = "Select (StudentRecord.StudentID),StudentRecord.CourseID,StudentRecord.Success,Convert(date,StudentRecord.DateCompleted) as DateCompleted,(Select distinct(value) from Customfields where Customfields.fieldid='cb9d2390-0418-4ac5-8843-f687e9fc5549' and Customfields.objectid=StudentRecord.StudentID) as Username ,(Select distinct(value) from Customfields where Customfields.fieldid='4eeda208-3788-4f0a-b21b-199b913e3869' and Customfields.objectid=StudentRecord.CourseID) as QualificationID "+
+            string strSQL = "Select StudentRecord.StudentID,StudentRecord.CourseID,case when course.type='Learning Path' then StudentRecord.DateEnrolled else StudentRecord.DateStarted end as DateStarted,StudentRecord.LastDateAttempted,StudentRecord.Success,Convert(date,StudentRecord.DateCompleted) as DateCompleted,(Select distinct(value) from Customfields where Customfields.fieldid='cb9d2390-0418-4ac5-8843-f687e9fc5549' and Customfields.objectid=StudentRecord.StudentID) as Username ,(Select distinct(value) from Customfields where Customfields.fieldid='4eeda208-3788-4f0a-b21b-199b913e3869' and Customfields.objectid=StudentRecord.CourseID) as QualificationID " +
             "from StudentRecord "+
             "inner join Course on Course.Courseid=Studentrecord.courseid "+
             "where (StudentRecord.Success='Passed' or StudentRecord.Success='Completed') and StudentRecord.DateCompleted is not null "+
@@ -41,13 +41,13 @@ namespace Ezector_windowsservice
             da.Fill(ds);
             con.Close();
             StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("Personal Number \t, QualificationID (Q) \t, Date \n");
+            builder.AppendFormat("Personal Number (P) \t, QualificationID (Q) \t, Start Date \n");
 
             if (ds.Tables[0].Rows.Count > 0)
             {
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    builder.AppendFormat(dr["Username"].ToString() + "\t," + dr["QualificationID"] + "\t," +String.Format("{0:d.M.yyyy}",Convert.ToDateTime(dr["DateCompleted"].ToString()))/* Convert.ToDateTime(dr["DateCompleted"].ToString()).ToString("d.mm.yyyy") */+ "\n");
+                    builder.AppendFormat(dr["Username"].ToString() + "\t," + dr["QualificationID"] + "\t," + String.Format("{0:d.M.yyyy}", Convert.ToDateTime(dr["DateStarted"].ToString()))/* Convert.ToDateTime(dr["DateCompleted"].ToString()).ToString("d.mm.yyyy") */+ "\n");
                 }
             }
             //************************
