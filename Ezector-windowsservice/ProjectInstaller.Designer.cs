@@ -39,7 +39,12 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.ServiceName = "EzectorTest Windows Service";
+            this.serviceInstaller1.Description = "A Windows Service for creating csv file with User Completion";
+            this.serviceInstaller1.DisplayName = "Ezector Thinkingcap FTP";
+            this.serviceInstaller1.ServiceName = "Ezector Thinkingcap FTP";
+            this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
+            this.serviceInstaller1.AfterInstall += new System.Configuration.Install.InstallEventHandler(this.serviceInstaller1_AfterInstall);
+            this.serviceInstaller1.BeforeUninstall += new System.Configuration.Install.InstallEventHandler(this.serviceInstaller1_BeforeUninstall);
             // 
             // ProjectInstaller
             // 

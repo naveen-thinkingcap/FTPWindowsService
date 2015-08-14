@@ -19,6 +19,7 @@
             }
             base.Dispose(disposing);
         }
+        private System.Timers.Timer timer;
 
         #region Component Designer generated code
 
@@ -29,7 +30,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            this.ServiceName = "Service1";
+            this.timer = new System.Timers.Timer();
+            this.ServiceName = "Ezector Thinkingcap FTP";
         }
 
         #endregion

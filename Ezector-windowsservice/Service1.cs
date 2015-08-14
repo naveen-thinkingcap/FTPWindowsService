@@ -37,13 +37,13 @@ namespace Ezector_windowsservice
             //{
 
             //compass.ProcessCompletedOrPassed();
-            Timer t = new Timer();
+            //Timer t = new Timer();
             /// 1000 millsecons is 1 secor for time interval
             //t.Interval = 30000;
             //t.Interval = 1000;
-            t.Interval = Convert.ToDouble(Config.TimerInterval);
-            t.Enabled = true;
-            t.Elapsed += new System.Timers.ElapsedEventHandler(OnTimerEvent);
+            timer.Interval = Convert.ToDouble(Config.TimerInterval);
+            timer.Enabled = true;
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(OnTimerEvent);
                 
             
             //}
@@ -81,6 +81,7 @@ namespace Ezector_windowsservice
         protected override void OnStop()
         {
            // System.IO.File.Create(Environment.CurrentDirectory + "OnStop.txt");
+            timer.Enabled = false;
         }
     }
 }
