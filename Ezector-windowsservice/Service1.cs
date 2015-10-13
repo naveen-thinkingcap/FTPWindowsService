@@ -65,8 +65,7 @@ namespace Ezector_windowsservice
             //if (((DateTime.UtcNow.AddHours(Convert.ToDouble(Config.UTCHourAdjust)).Minute % Convert.ToDouble(Config.Minute)) == 0))
             //    okay = "good";
             //else
-            //    okay = "bad";
-                
+            //    okay = "bad";                
             //if (((DateTime.UtcNow.AddHours(Convert.ToDouble(Config.UTCHourAdjust)).Hour % Convert.ToDouble(Config.Hour)) == 0) && ((DateTime.UtcNow.AddHours(Convert.ToDouble(Config.UTCHourAdjust)).Minute % Convert.ToDouble(Config.Minute)) == 0) && (!System.IO.File.Exists(filepath + filename)))
             if ((DateTime.UtcNow.AddHours(Convert.ToDouble(Config.UTCHourAdjust)).Hour == Convert.ToDouble(Config.Hour)) && ((DateTime.UtcNow.AddHours(Convert.ToDouble(Config.UTCHourAdjust)).Minute % Convert.ToDouble(Config.Minute)) == 0) && (!System.IO.File.Exists(filepath + filename)))
             
