@@ -65,7 +65,10 @@ namespace Ezector_windowsservice
                 {
                     foreach (DataRow dr in ds.Tables[0].Rows)
                     {
-                        builder.AppendFormat(dr["Username"].ToString() + "\t," + dr["QualificationID"] + "\t," + String.Format("{0:d.M.yyyy}", Convert.ToDateTime(dr["DateStarted"].ToString()))/* Convert.ToDateTime(dr["DateCompleted"].ToString()).ToString("d.mm.yyyy") */+ "\n");
+                        if (dr["Username"].ToString().Length == 5)
+                        {
+                            builder.AppendFormat(dr["Username"].ToString() + "\t," + dr["QualificationID"] + "\t," + String.Format("{0:d.M.yyyy}", Convert.ToDateTime(dr["DateStarted"].ToString()))/* Convert.ToDateTime(dr["DateCompleted"].ToString()).ToString("d.mm.yyyy") */+ "\n");
+                        }
                     }
                 }
                 //************************
@@ -94,7 +97,10 @@ namespace Ezector_windowsservice
                 {
                     foreach (DataRow dr1 in ds1.Tables[0].Rows)
                     {
-                        builder.AppendFormat(dr1["Username"].ToString() + "\t," + dr1["QualificationID"] + "\t," + String.Format("{0:d.M.yyyy}", Convert.ToDateTime(dr1["CompletionDate"].ToString()))/* Convert.ToDateTime(dr["DateCompleted"].ToString()).ToString("d.mm.yyyy") */+ "\n");
+                        if (dr1["Username"].ToString().Length == 5)
+                        {
+                            builder.AppendFormat(dr1["Username"].ToString() + "\t," + dr1["QualificationID"] + "\t," + String.Format("{0:d.M.yyyy}", Convert.ToDateTime(dr1["CompletionDate"].ToString()))/* Convert.ToDateTime(dr["DateCompleted"].ToString()).ToString("d.mm.yyyy") */+ "\n");
+                        }
                     }
                 }
                 //************************
